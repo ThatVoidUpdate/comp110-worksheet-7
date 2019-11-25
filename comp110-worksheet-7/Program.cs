@@ -11,7 +11,13 @@ namespace comp110_worksheet_7
 	{
 		static void Main(string[] args)
 		{
-			const string c_baseDirectory = "../../../comp110-worksheet-7-tests/pixelcarpack_kenney/PNG";
+			const string c_baseDirectory = "..\\..\\..\\comp110-worksheet-7-tests\\pixelcarpack_kenney\\PNG";
+
+            foreach (var item in DirectoryUtils.Traverse(c_baseDirectory))
+            {
+                Console.WriteLine(item);
+            }
+            
 
 			try
 			{

@@ -9,6 +9,32 @@ namespace comp110_worksheet_7
 {
 	public static class DirectoryUtils
 	{
+        public static List<string> Traverse(string filePath, bool includeFiles, bool includeFolders)
+        {
+            List<string> ret = new List<string>();
+            foreach (string item in Directory.GetFileSystemEntries(filePath))
+            {
+                if (IsDirectory(item))
+                {
+                    if (includeFolders)
+                    {
+                        ret.Add(item);
+                    }
+                    
+                    ret.AddRange(Traverse(item, includeFiles, includeFolders));
+                }
+                else
+                {
+                    if (includeFiles)
+                    {
+                        ret.Add(item);
+                    }
+                }
+            }
+
+            return ret;
+        }
+
 		// Return the size, in bytes, of the given file
 		public static long GetFileSize(string filePath)
 		{
